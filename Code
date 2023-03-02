@@ -1,0 +1,157 @@
+#include <bits/stdc++.h>
+
+#define endl "\n"
+#define nl << endl
+#define sp << " "
+#define lend cout << endl;
+#define ll long long int
+#define pb push_back
+#define popb pop_back();
+#define all(x) x.begin() , x.end()
+#define sortAll(x) sort(all(x));
+#define rsort(x) sortAll(x); reverse(all(x));
+
+#define YES() cout << "YES" nl
+#define NO() cout << "NO" nl
+#define Yes() cout << "Yes" nl
+#define No() cout << "No" nl
+#define yes() cout << "yes" nl
+#define no() cout << "no" nl
+
+#define vll vector<ll>
+#define vvll vector<vector<ll>>
+#define vcc vector<char>
+#define vvcc vector<vector<char>>
+#define vb vector<bool>
+#define vvb vector<vb>
+
+using namespace std;
+using namespace std :: chrono;
+
+template<typename T> using MaxHeap = priority_queue<T>;
+template<typename T> using MinHeap = priority_queue<T, vector<T>, greater<T> >;
+template<typename T> using HashSet = unordered_set<T>;
+template<typename T1, typename T2> using HashMap = unordered_map<T1, T2>;
+
+const ll MOD = 1e9 + 7;
+
+// Hash Function for Vector
+struct Vector {
+    size_t operator() (const vector<ll> &myVector) const {
+        hash<ll> hasher;
+        size_t answer = 0;
+        for(ll i : myVector) {
+            answer ^= hasher(i) + 0x9e3779b9 + (answer << 6) + (answer >> 2);
+        }
+
+        return answer;
+    }
+};
+
+// Hash Function for Pair
+struct Pair {
+    template<typename T1, typename T2>
+    size_t operator() (const pair<T1, T2> &p) const {
+        auto hash_1 = hash<T1> {}(p.first);
+        auto hash_2 = hash<T2> {}(p.second);
+
+        if(hash_1 != hash_2) return hash_1 ^ hash_2;
+        return hash_1;
+    }
+};
+
+
+template<class T> istream& operator>>(istream &in, vector<T> &arr) {
+    for(auto &it : arr) in >> it;
+    return in;
+}
+template<class T> ostream& operator<<(ostream &out, vector<T> &arr) {
+    for(auto &it : arr) out << it sp;
+    return out;
+}
+template<class T> ostream& operator<<(ostream &out, set<T> &s) {
+    for(auto &it : s) out << it sp;
+    return out;
+}
+template<class T> ostream& operator<<(ostream &out, unordered_set<T> &s) {
+    for(auto &it : s) out << it sp;
+    return out;
+}
+template<class T> ostream& operator<<(ostream &out, multiset<T> &s) {
+    for(auto &it : s) out << it sp;
+    return out;
+}
+
+ll power(ll x, ll y) {
+    const ll mod = 1e9 + 9;
+    ll ans = 1;
+    while(y) {
+        if(y % 2) ans = (ans * x) % mod;
+        x = (x * x) % mod, y /= 2;
+    }
+    return ans;
+}
+ll HCF(ll a, ll b) {
+    return !b ? a : HCF(b, a % b);
+}
+ll LCM(ll a, ll b) {
+    ll hcf = HCF(a, b);
+    return (a * b) / hcf;
+}
+
+class Solution {
+
+public:
+
+    Solution() {
+#ifndef ONLINE_JUDGE
+        freopen("error.txt", "w", stderr);
+#endif
+        auto startTime = std :: chrono :: high_resolution_clock :: now();
+        /*********************************************************/
+
+        ll t = 1;
+        // cin >> t;
+
+        this->preProcess();
+        for(ll testCase = 1 ; testCase <= t ; testCase++) {
+            this->getMeTheSolution();
+        }
+        /*********************************************************/
+
+        auto endTime = std :: chrono :: high_resolution_clock :: now();
+        auto dur = std :: chrono :: duration_cast<duration<double>> (endTime - startTime);
+
+#ifndef ONLINE_JUDGE
+        cerr << "[Finished in : " << dur.count() << " s]" << endl;
+#endif
+    }
+    ~Solution() {}
+    /*
+
+
+
+    */
+
+private:
+
+
+    inline void getMeTheSolution() {
+        
+    }
+
+    inline void preProcess() {
+
+    }
+};
+
+
+int main() {
+    ios_base :: sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    Solution *instance = new Solution();
+    delete instance;
+    return 0;
+}

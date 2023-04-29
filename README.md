@@ -1,2 +1,2 @@
-# Template-C-
-Competitive Programming template for C++
+# Template 
+Competitive Programming template for C++ and Java

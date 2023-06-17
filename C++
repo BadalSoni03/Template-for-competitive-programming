@@ -41,7 +41,6 @@ namespace HashFunc {
         size_t operator() (const pair<T1 , T2> &p) const {
             auto hash_1 = hash<T1> {}(p.first);
             auto hash_2 = hash<T2> {}(p.second);
-
             if(hash_1 != hash_2) return hash_1 ^ hash_2;
             return hash_1;
         }
@@ -52,14 +51,13 @@ namespace HashFunc {
         size_t operator() (const vector<T> &myVector) const {
             hash<T> hasher;
             size_t answer = 0;
-            for(T i : myVector) {
-                answer ^= hasher(i) + 0x9e3779b9 + (answer << 6) + (answer >> 2);
-            }
+            for(T i : myVector) answer ^= hasher(i) + 0x9e3779b9 + (answer << 6) + (answer >> 2);
             return answer;
         }
     };
 };
 namespace MathFunc {
+    #define MOD 1000000007
     int max(vector<int> arr) {return *max_element(all(arr));}
     int min(vector<int> arr) {return *min_element(all(arr));}
     ll max(ll a , ll b) {return a >= b ? a : b;}
@@ -77,32 +75,24 @@ namespace MathFunc {
     ll HCF(ll a , ll b) {return !b ? a : HCF(b , a % b);}
     ll LCM(ll a , ll b) {ll hcf = HCF(a , b); return (a * b) / hcf;}
     ll stoll(string str) {ll num = 0; for(auto &it : str) num *= 10 + it; return num;}
-    ll power(ll x , ll y) {
-        const ll mod = 1e9 + 9;
-        ll ans = 1;
-        while(y) {
-            if(y % 2) ans = (ans * x) % mod;
-            x = (x * x) % mod , y /= 2;
-        }
-        return ans;
-    }
+    ll add(ll a , ll b) {return ((a % MOD) + (b % MOD)) % MOD;}
+    ll sub(ll a , ll b) {return ((a % MOD) - (b % MOD)) % MOD;}
+    ll mul(ll a , ll b) {return ((a % MOD) * (b % MOD)) % MOD;}
+    ll binPower(ll a , ll b) {if(b == 0) return 1;ll tmp = binPower(a , b / 2);tmp = mul(tmp , tmp);if(b & 1) return mul(tmp , a);return tmp;}
+    void precise(double num , int place) {cout << fixed << setprecision(place) << num;}
 };
 using namespace HashFunc;
 using namespace MathFunc;
 using namespace std :: chrono;
-const ll MOD = 1e9 + 7;
 /***********************************************************************************************************/
-/*
 
-
-*/
 
 
 inline void preProcess() {}
 
 
 inline void getMeTheSolution() {
-
+    
 }
 
 

@@ -31,8 +31,8 @@ template<typename T> using MinHeap = priority_queue<T , vector<T> , greater<T> >
 template<typename T> istream& operator>>(istream &in , vector<T> &arr) {for(auto &it : arr) in >> it; return in;}
 template<typename T> ostream& operator<<(ostream &out , vector<T> &arr) {for(auto &it : arr) out << it sp; return out;}
 template<typename T> ostream& operator<<(ostream &out , set<T> &s) {for(auto &it : s) out << it sp; return out;}
-template<typename T> ostream& operator<<(ostream &out , unordered_set<T> &s) {for(auto &it : s) out << it sp; return out;}
-template<typename T> ostream& operator<<(ostream &out , multiset<T> &s) {for(auto &it : s) out << it sp; return out;}
+template<typename T> istream& operator>>(istream &in , vector<vector<T>> &arr) {for(auto & row : arr) in >> row; return in;}
+template<typename T> ostream& operator<<(ostream &out , vector<vector<T>> & arr) {for(auto & row : arr) out << row nl; return out;}
 
 namespace HashFunc {
     struct Pair {
@@ -67,11 +67,13 @@ namespace MathFunc {
     double max(vector<double> ele) {return *max_element(all(ele));}
     double min(vector<double> ele) {return *min_element(all(ele));}
     ll HCF(ll a , ll b) {return !b ? a : HCF(b , a % b);}
-    ll LCM(ll a , ll b) {ll hcf = HCF(a , b); return (a * b) / hcf;}
-    ll stoll(string str) {ll num = 0; for(auto &it : str) num *= 10 + it; return num;}
+    ll LCM(ll a , ll b) {ll hcf = HCF(a , b); return (a * b) / hcf * b;}
+    ll stoLL(string str) {ll num = 0; for(auto &it : str) num *= 10 + it; return num;}
     ll add(ll a , ll b) {return ((a % MOD) + (b % MOD)) % MOD;}
     ll sub(ll a , ll b) {return ((a % MOD) - (b % MOD)) % MOD;}
     ll mul(ll a , ll b) {return ((a % MOD) * (b % MOD)) % MOD;}
+    bool isPowerOf2(ll x) {if(x < 0) return false; return x && (!(x & (x - 1)));}
+    ll digitCount(ll n) {return floor(log10(n) + 1);}
     ll binPower(ll a , ll b) {if(b == 0) return 1;ll tmp = binPower(a , b / 2);tmp = mul(tmp , tmp);if(b & 1) return mul(tmp , a);return tmp;}
     void precise(double num , int place) {cout << fixed << setprecision(place) << num;}
 };

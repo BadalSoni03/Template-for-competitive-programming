@@ -25,6 +25,7 @@
 #define HashMap unordered_map
 #define HashSet unordered_set
 using namespace std;
+#pragma GCC optimize("Ofast")
 
 template<typename T> using MaxHeap = priority_queue<T>;
 template<typename T> using MinHeap = priority_queue<T , vector<T> , greater<T> >;

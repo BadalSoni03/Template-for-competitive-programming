@@ -1,15 +1,18 @@
 #include <bits/stdc++.h>
+#pragma GCC optimize("Ofast")
 
-#define endl "\n"
+#define endl '\n'
 #define nl << endl
 #define sp << " "
 #define lend cout << endl;
 #define ll long long int
+#define ld long double
 #define pb push_back
 #define popb pop_back();
 #define all(x) x.begin() , x.end()
+#define rall(x) x.rbegin() , x.rend()
 #define sortAll(x) sort(all(x));
-#define rsort(x) sortAll(x); reverse(all(x));
+#define rsort(x) sort(rall(x));
 #define YES() cout << "YES" nl
 #define NO() cout << "NO" nl
 #define Yes() cout << "Yes" nl
@@ -25,27 +28,26 @@
 #define HashMap unordered_map
 #define HashSet unordered_set
 using namespace std;
-#pragma GCC optimize("Ofast")
 
 template<typename T> using MaxHeap = priority_queue<T>;
 template<typename T> using MinHeap = priority_queue<T , vector<T> , greater<T> >;
-template<typename T> istream& operator>>(istream &in , vector<T> &arr) {for(auto &it : arr) in >> it; return in;}
-template<typename T> ostream& operator<<(ostream &out , vector<T> &arr) {for(auto &it : arr) out << it sp; return out;}
-template<typename T> ostream& operator<<(ostream &out , set<T> &s) {for(auto &it : s) out << it sp; return out;}
-template<typename T> istream& operator>>(istream &in , vector<vector<T>> &arr) {for(auto & row : arr) in >> row; return in;}
-template<typename T> ostream& operator<<(ostream &out , vector<vector<T>> & arr) {for(auto & row : arr) out << row nl; return out;}
+template<typename T> istream & operator>>(istream & in , vector<T> & arr) {for (auto & it : arr) in >> it; return in;}
+template<typename T> ostream & operator<<(ostream & out , vector<T> & arr) {for (auto & it : arr) out << it sp; return out;}
+template<typename T> ostream & operator<<(ostream & out , set<T> & s) {for (auto & it : s) out << it sp; return out;}
+template<typename T> ostream & operator<<(ostream & out , unordered_set<T> & s) {for (auto & it : s) out << it sp; return out;}
+template<typename T , typename Q> ostream & operator<<(ostream & out , unordered_map<T , Q> & mp) {for (auto & it : mp) out << it.first sp << it.second; return out;}
 
 namespace HashFunc {
     struct Pair {
-        template<typename T1 , typename T2> size_t operator() (const pair<T1 , T2> &p) const {
+        template<typename T1 , typename T2> size_t operator() (const pair<T1 , T2> & p) const {
             auto hash_1 = hash<T1> {}(p.first);auto hash_2 = hash<T2> {}(p.second);
             if(hash_1 != hash_2) return hash_1 ^ hash_2;return hash_1;
         }
     };
     struct Vector {
-        template<typename T> size_t operator() (const vector<T> &myVector) const {
+        template<typename T> size_t operator() (const vector<T> & myVector) const {
             hash<T> hasher;size_t answer = 0;
-            for(T i : myVector) answer ^= hasher(i) + 0x9e3779b9 + (answer << 6) + (answer >> 2);return answer;
+            for (T i : myVector) answer ^= hasher(i) + 0x9e3779b9 + (answer << 6) + (answer >> 2);return answer;
         }
     };
 };
@@ -68,10 +70,10 @@ namespace MathFunc {
     double max(vector<double> ele) {return *max_element(all(ele));}
     double min(vector<double> ele) {return *min_element(all(ele));}
     ll HCF(ll a , ll b) {return !b ? a : HCF(b , a % b);}
-    ll LCM(ll a , ll b) {ll hcf = HCF(a , b); return (a * b) / hcf * b;}
-    ll stoLL(string str) {ll num = 0; for(auto &it : str) num *= 10 + it; return num;}
+    ll LCM(ll a , ll b) {ll hcf = HCF(a , b); return (a * b) / hcf;}
+    ll stoLL(string str) {ll num = 0; for (auto & it : str) num *= 10 + it; return num;}
     ll add(ll a , ll b) {return ((a % MOD) + (b % MOD)) % MOD;}
-    ll sub(ll a , ll b) {return ((a % MOD) - (b % MOD)) % MOD;}
+    ll sub(ll a , ll b) {return ((a % MOD) - (b % MOD) + MOD) % MOD;}
     ll mul(ll a , ll b) {return ((a % MOD) * (b % MOD)) % MOD;}
     bool isPowerOf2(ll x) {if(x < 0) return false; return x && (!(x & (x - 1)));}
     ll digitCount(ll n) {return floor(log10(n) + 1);}
@@ -91,7 +93,7 @@ using namespace std :: chrono;
 inline void preProcess() {}
 
 
-inline void getMeTheSolution() {
+inline void getMeTheSolution(ll testCase) {
     
 }
 
@@ -102,19 +104,20 @@ int main() {
     
     #ifndef ONLINE_JUDGE
         freopen("error.txt" , "w" , stderr);
+        auto startTime = std :: chrono :: high_resolution_clock :: now();
     #endif        
-    auto startTime = std :: chrono :: high_resolution_clock :: now();
     
     ll t = 1;
     // cin >> t;
 
     preProcess();
     for(ll testCase = 1 ; testCase <= t ; testCase++) {
-        getMeTheSolution();
+        getMeTheSolution(testCase);
     }
-    auto endTime = std :: chrono :: high_resolution_clock :: now();
-    auto dur = std :: chrono :: duration_cast<duration<double>> (endTime - startTime);
+
     #ifndef ONLINE_JUDGE
+        auto endTime = std :: chrono :: high_resolution_clock :: now();
+        auto dur = std :: chrono :: duration_cast<duration<double>> (endTime - startTime);
         cerr << "[Finished in : " << dur.count() << " s]" << endl;
     #endif
 }

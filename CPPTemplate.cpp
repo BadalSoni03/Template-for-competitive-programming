@@ -35,6 +35,8 @@ template<typename T> istream & operator>>(istream & in , vector<T> & arr) {for (
 template<typename T> ostream & operator<<(ostream & out , vector<T> & arr) {for (auto & it : arr) out << it sp; return out;}
 template<typename T> ostream & operator<<(ostream & out , set<T> & s) {for (auto & it : s) out << it sp; return out;}
 template<typename T> ostream & operator<<(ostream & out , unordered_set<T> & s) {for (auto & it : s) out << it sp; return out;}
+template<typename T> istream& operator>>(istream & in , vector<vector<T>> & arr) {for (auto & row : arr) in >> row; return in;}
+template<typename T> ostream& operator<<(ostream & out , vector<vector<T>> & arr) {for (auto & row : arr) out << row nl; return out;}
 template<typename T , typename Q> ostream & operator<<(ostream & out , unordered_map<T , Q> & mp) {for (auto & it : mp) out << it.first sp << it.second; return out;}
 
 namespace HashFunc {

@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+i#include <bits/stdc++.h>
 #pragma GCC optimize("Ofast")
 
 #define endl '\n'
@@ -73,7 +73,7 @@ namespace MathFunc {
     double min(vector<double> ele) {return *min_element(all(ele));}
     ll HCF(ll a , ll b) {return !b ? a : HCF(b , a % b);}
     ll LCM(ll a , ll b) {ll hcf = HCF(a , b); return (a * b) / hcf;}
-    ll stoLL(string str) {ll num = 0; for (auto & it : str) num *= 10 + (it - '0'); return num;}
+    ll stoLL(string str) {ll num = 0; for (auto & it : str) num = (num * 10) + (it - '0'); return num;}
     ll add(ll a , ll b) {return ((a % MOD) + (b % MOD)) % MOD;}
     ll sub(ll a , ll b) {return ((a % MOD) - (b % MOD) + MOD) % MOD;}
     ll mul(ll a , ll b) {return ((a % MOD) * (b % MOD)) % MOD;}

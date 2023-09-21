@@ -52,35 +52,48 @@ namespace HashFunc {
             for (T i : myVector) answer ^= hasher(i) + 0x9e3779b9 + (answer << 6) + (answer >> 2);return answer;
         }
     };
+    struct custom_hash {
+        static uint64_t splitmix64(uint64_t x) {
+            // http://xorshift.di.unimi.it/splitmix64.c
+            x += 0x9e3779b97f4a7c15;
+            x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+            x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+            return x ^ (x >> 31);
+        }
+        size_t operator()(uint64_t x) const {
+            static const uint64_t FIXED_RANDOM = chrono :: steady_clock :: now().time_since_epoch().count();
+            return splitmix64(x + FIXED_RANDOM);
+        }
+    };
 };
 namespace MathFunc {
     #define MOD 1000000007
     #define inf INT_MAX 
     #define neginf INT_MIN
-    int max(vector<int> arr) {return *max_element(all(arr));}
-    int min(vector<int> arr) {return *min_element(all(arr));}
-    ll max(ll a , ll b) {return a >= b ? a : b;}
-    ll min(ll a , ll b) {return a <= b ? a : b;}
-    ll max(vll ele) {return *max_element(all(ele));}
-    ll min(vll ele) {return *min_element(all(ele));}
-    float max(float a , float b) {return a >= b ? a : b;}
-    float min(float a , float b) {return a <= b ? a : b;}
-    float max(vector<float> ele) {return *max_element(all(ele));}
-    float min(vector<float> ele) {return *min_element(all(ele));}
-    double max(double a , double b) {return a >= b ? a : b;}
-    double min(double a , double b) {return a <= b ? a : b;}
-    double max(vector<double> ele) {return *max_element(all(ele));}
-    double min(vector<double> ele) {return *min_element(all(ele));}
+    inline int max(vector<int> arr) {return *max_element(all(arr));}
+    inline int min(vector<int> arr) {return *min_element(all(arr));}
+    inline ll max(ll a , ll b) {return a >= b ? a : b;}
+    inline ll min(ll a , ll b) {return a <= b ? a : b;}
+    inline ll max(vll ele) {return *max_element(all(ele));}
+    inline ll min(vll ele) {return *min_element(all(ele));}
+    inline float max(float a , float b) {return a >= b ? a : b;}
+    inline float min(float a , float b) {return a <= b ? a : b;}
+    inline float max(vector<float> ele) {return *max_element(all(ele));}
+    inline float min(vector<float> ele) {return *min_element(all(ele));}
+    inline double max(double a , double b) {return a >= b ? a : b;}
+    inline double min(double a , double b) {return a <= b ? a : b;}
+    inline double max(vector<double> ele) {return *max_element(all(ele));}
+    inline double min(vector<double> ele) {return *min_element(all(ele));}
     ll HCF(ll a , ll b) {return !b ? a : HCF(b , a % b);}
-    ll LCM(ll a , ll b) {ll hcf = HCF(a , b); return (a * b) / hcf;}
-    ll stoLL(string str) {ll num = 0; for (auto & it : str) num = (num * 10) + (it - '0'); return num;}
-    ll add(ll a , ll b) {return ((a % MOD) + (b % MOD)) % MOD;}
-    ll sub(ll a , ll b) {return ((a % MOD) - (b % MOD) + MOD) % MOD;}
-    ll mul(ll a , ll b) {return ((a % MOD) * (b % MOD)) % MOD;}
-    bool isPowerOf2(ll x) {if(x < 0) return false; return x && (!(x & (x - 1)));}
-    ll digitCount(ll n) {return floor(log10(n) + 1);}
-    ll binPower(ll a , ll b) {if(b == 0) return 1;ll tmp = binPower(a , b / 2);tmp = mul(tmp , tmp);if(b & 1) return mul(tmp , a);return tmp;}
-    void precise(double num , int place) {cout << fixed << setprecision(place) << num;}
+    inline ll LCM(ll a , ll b) {ll hcf = HCF(a , b); return (a * b) / hcf;}
+    inline ll stoLL(string str) {ll num = 0; for (auto & it : str) num = (num * 10) + (it - '0'); return num;}
+    inline ll add(ll a , ll b) {return ((a % MOD) + (b % MOD)) % MOD;}
+    inline ll sub(ll a , ll b) {return ((a % MOD) - (b % MOD) + MOD) % MOD;}
+    inline ll mul(ll a , ll b) {return ((a % MOD) * (b % MOD)) % MOD;}
+    inline bool isPowerOf2(ll x) {if (x < 0) return false; return x && (!(x & (x - 1)));}
+    inline ll digitCount(ll n) {return floor(log10(n) + 1);}
+    ll binPower(ll a , ll b) {if (b == 0) return 1;ll tmp = binPower(a , b / 2);tmp = mul(tmp , tmp);if (b & 1) return mul(tmp , a);return tmp;}
+    inline void precise(double num , int place) {cout << fixed << setprecision(place) << num;}
 };
 using namespace HashFunc;
 using namespace MathFunc;
@@ -100,6 +113,7 @@ inline void getMeTheSolution(ll testCase) {
 }
 
 
+
 /***********************************************************************************************************/
 int main() {
     ios_base :: sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -111,7 +125,7 @@ int main() {
     
     ll t = 1;
     // cin >> t;
-
+    
     preProcess();
     for(ll testCase = 1 ; testCase <= t ; testCase++) {
         getMeTheSolution(testCase);
@@ -122,4 +136,5 @@ int main() {
         auto dur = std :: chrono :: duration_cast<duration<double>> (endTime - startTime);
         cerr << "[Finished in : " << dur.count() << " s]" << endl;
     #endif
+    return 0;
 }

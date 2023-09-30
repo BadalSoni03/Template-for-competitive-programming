@@ -16,7 +16,7 @@ public:
 		return parent[node] == node ? node : parent[node] = find(parent[node]);
 	}
 	int getComps() {
-		return this.comps;
+		return this->comps;
 	}
 	void unite(int x , int y) {
 		int px = find(x);
@@ -28,6 +28,6 @@ public:
 			rank[px]++;
 			parent[py] = px;
 		}
-		this.comps--;
+		this->comps--;
 	}
 };

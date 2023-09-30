@@ -7,7 +7,7 @@ public:
 	DSU() {}
 	DSU(int n) {
 		this->n = n;
-		this.comps = n;
+		this->comps = n;
 		parent.resize(this->n);
 		rank.resize(this->n , -1);
 		for (int i = 0 ; i < this->n ; ++i) parent[i] = i;
